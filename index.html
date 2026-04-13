@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBD Satria Ke-18!</title>
+    <style>
+        /* Desain Dasar */
+        body {
+            margin: 0; padding: 0;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; background: #0a0a0a; color: white;
+            font-family: 'Inter', 'Segoe UI', sans-serif; overflow-x: hidden;
+        }
+
+        .container { 
+            text-align: center; z-index: 10; padding: 20px; width: 90%; max-width: 500px; 
+        }
+
+        #message-box { display: none; animation: fadeIn 2s ease-in-out; }
+
+        /* Foto Profil */
+        .profile-img {
+            width: 140px; height: 140px;
+            border-radius: 50%;
+            border: 3px solid #60a5fa;
+            margin-bottom: 20px;
+            object-fit: cover;
+            box-shadow: 0 0 30px rgba(96, 165, 250, 0.4);
+        }
+
+        /* Tombol Start */
+        .btn-surprise {
+            padding: 16px 32px; font-size: 1.1rem; font-weight: bold;
+            background: linear-gradient(45deg, #1e40af, #3b82f6);
+            border: none; border-radius: 12px; color: white;
+            cursor: pointer; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-surprise:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5); }
+
+        h1 { font-size: 2.2rem; margin: 10px 0; letter-spacing: -1px; }
+        .typing { font-size: 1.05rem; color: #cbd5e1; line-height: 1.6; min-height: 4em; margin-bottom: 20px; }
+
+        /* Container Video/Lagu */
+        .video-wrapper {
+            border-radius: 15px; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: #1e293b;
+            aspect-ratio: 16/9;
+        }
+
+        /* Animasi Partikel */
+        .particle {
+            position: absolute; background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%; pointer-events: none; animation: floatUp 7s infinite linear;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes floatUp { from { transform: translateY(110vh); } to { transform: translateY(-10vh); } }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="start-screen">
+            <button class="btn-surprise" onclick="startSurprise()">Klik: Ada pesan buat Satria</button>
+        </div>
+
+        <div id="message-box">
+            <img src="https://via.placeholder.com/150" alt="Satria" class="profile-img">
+            
+            <h1>HBD Satria! 🎂</h1>
+            <div class="typing" id="typing-text"></div>
+
+            <div class="video-wrapper">
+                <iframe 
+                    width="100%" height="100%" 
+                    src="https://www.youtube.com/embed/7ZvbA2UWmNg?autoplay=1&start=50" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function startSurprise() {
+            // Sembunyikan tombol, munculkan konten
+            document.getElementById('start-screen').style.display = 'none';
+            document.getElementById('message-box').style.display = 'block';
+            
+            // Pesan yang akan diketik otomatis
+            const text = "Selamat ulang tahun anak Setu! Udah legal nih umur 18. Semoga tahun ini 'bug' di hidupmu berkurang, 'features' makin nambah, dan kebahagiaanmu selalu dalam status 'deployed'. All the best, Sat! 🚀";
+            let i = 0;
+
+            function typeWriter() {
+                if (i < text.length) {
+                    document.getElementById("typing-text").innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 45); // Kecepatan ngetik
+                }
+            }
+            
+            typeWriter();
+            createParticles();
+        }
+
+        // Efek hiasan melayang
+        function createParticles() {
+            for (let i = 0; i < 40; i++) {
+                let p = document.createElement('div');
+                p.className = 'particle';
+                let size = Math.random() * 5 + 'px';
+                p.style.width = size; p.style.height = size;
+                p.style.left = Math.random() * 100 + 'vw';
+                p.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                p.style.animationDelay = Math.random() * 5 + 's';
+                document.body.appendChild(p);
+            }
+        }
+    </script>
+</body>
+</html>
+
